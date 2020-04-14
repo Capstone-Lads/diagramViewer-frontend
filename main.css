@@ -4,20 +4,62 @@
 
 body {
   margin: 0px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #F0F0F0;
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.dark {
+  background-color: #404040;
 }
 
 #login-div {
   background-color: #C0C0C0;
-  margin: 20vh auto;
+  margin: 10em auto;
   width: 20em;
+  border-radius: 1em;
 }
 
 #login-form {
   text-align: center;
-  padding: 2em 0;
+  padding: 1em 0;
+  font-size: 20px;
+}
+
+#login-form h1 {
+  margin: .1em;
+}
+
+#login-form input {
+  border-radius: .5em;
+  font-size: 18px;
+}
+
+#password {
+  width: 173.5px;
 }
 
 #login-form input[type=submit] {
-  font-family: 'Montserrat', sans-serif;
+  margin: .5em 0 0 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+#bad-login {
+  margin: 1px 0;
+  color: red;
 }
