@@ -1,0 +1,23 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#login-div {
+  background-color: #C0C0C0;
+  margin: 20vh auto;
+  width: 20em;
+}
+
+#login-form {
+  text-align: center;
+  padding: 2em 0;
+}
+
+#login-form input[type=submit] {
+  font-family: 'Montserrat', sans-serif;
+}
