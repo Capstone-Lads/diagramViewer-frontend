@@ -7,7 +7,6 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-			darkMode: true,
       userIsLoggedIn: false,
       apiKey: null,
     }
@@ -26,7 +25,7 @@ class App extends React.Component {
     return (
       <div id="app" className={this.state.darkMode ? 'dark' : null}>
         {this.state.userIsLoggedIn ?
-          <div>TODO: App Component</div>
+          <h1>LOGIN SUCCESSFUL</h1>
           : <LoginForm callback={this.loginCallback} />
         }
       </div>
