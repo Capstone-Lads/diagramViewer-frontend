@@ -1,4 +1,6 @@
 import React from 'react';
+import UploadDiagram from './UploadDiagram';
+import DiagramViewer from './DiagramViewer';
 
 class Wrapper extends React.Component {
 	constructor(props) {
@@ -26,10 +28,9 @@ class Wrapper extends React.Component {
 		);
 
 		if (this.state.currentModule === 0) {
-			// diagram viewer
-			content = <div id="diagram-viewer">diagram viewer</div>
+			content = <DiagramViewer />
 		} else if (this.state.currentModule === 1) {
-			content = <div id="upload-diagram">upload diagram</div>
+			content = <UploadDiagram />
 		}
 
 		return (

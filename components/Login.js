@@ -135,7 +135,7 @@ class LoginForm extends React.Component {
 					<label id="remember-label" htmlFor="rememberUsername">Remember username</label>
 					<br />
 					{this.state.loading ? <FontAwesomeIcon className="fa-spin" id="loading" icon={faCircleNotch} /> : <input type="submit" value="Sign In"></input>}
-					{this.state.badLogin ? <p id="bad-login">Incorrect username or password</p> : null}
+					{this.state.badLogin ? <p className="error">Incorrect username or password</p> : null}
 				</form>
 			</div >
 		)

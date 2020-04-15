@@ -5,6 +5,7 @@
 body {
   margin: 0px;
   font-family: 'Roboto', sans-serif;
+  white-space: pre-line;
 }
 
 body .dark {
@@ -112,7 +113,7 @@ body .dark #dark-mode-toggle {
   background-color: #81c2df;
 }
 
-#bad-login {
+.error {
   margin: 1px 0;
   color: #F23040;
 }
@@ -120,11 +121,13 @@ body .dark #dark-mode-toggle {
 #wrapper {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
 }
 
 #sidebar {
   height: 100vh;
   border-right: 1px solid grey;
+  text-align: left
 }
 
 #sidebar ul {
@@ -157,4 +160,37 @@ body .dark #dark-mode-toggle {
 }
 
 #content {
+  flex-grow: 2;
+}
+
+#upload-diagram {
+  margin: 10em auto;
+  text-align: center;
+  width: 50%;
+}
+
+#upload-diagram-form {
+  display: flex;
+  flex-direction: row;
+}
+
+#upload-diagram-labels {
+  text-align: right;
+}
+
+#upload-diagram-labels label {
+  font-size: 18px;
+}
+
+#upload-diagram-form form {
+  text-align: right;
+}
+
+#upload-diagram-form select {
+  width: 100%;
+}
+
+#upload-diagram-success {
+  font-size: 30px;
+  color: #81c2df;
 }
