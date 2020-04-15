@@ -116,3 +116,45 @@ body .dark #dark-mode-toggle {
   margin: 1px 0;
   color: #F23040;
 }
+
+#wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#sidebar {
+  height: 100vh;
+  border-right: 1px solid grey;
+}
+
+#sidebar ul {
+  list-style-type:none;
+  padding: 0;
+}
+
+#sidebar li {
+  margin: .5em 0;
+}
+
+#sidebar button {
+  width: 100%;
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: black;
+}
+
+.dark #sidebar button {
+  color: white;
+}
+
+#sidebar .selected button {
+  color: black;
+}
+
+#sidebar .selected {
+  background-color: #81c2df;
+}
+
+#content {
+}

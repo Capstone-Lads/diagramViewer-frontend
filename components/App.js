@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './Login';
+import Wrapper from './Wrapper';
 
 class App extends React.Component {
 
@@ -17,13 +18,7 @@ class App extends React.Component {
   }
 
   toggleDarkMode() {
-    this.setState({darkMode: !this.state.darkMode});
-    const body = document.querySelector('body');
-    if (this.state.darkMode) {
-      body.className = "dark";
-    } else {
-      body.className = "";
-    }
+    this.setState({ darkMode: !this.state.darkMode });
   }
 
   loginCallback(loggedIn, data) {
@@ -36,11 +31,11 @@ class App extends React.Component {
   render() {
     return (
       <div id="app" className={this.state.darkMode ? 'dark' : null}>
-        <button id="dark-mode-toggle" onClick={this.toggleDarkMode}>{this.state.darkMode ? "Light Mode" : "Dark Mode"}</button>
         {this.state.userIsLoggedIn ?
-          <h1>LOGIN SUCCESSFUL</h1>
+          <Wrapper />
           : <LoginForm callback={this.loginCallback} />
         }
+        <button id="dark-mode-toggle" onClick={this.toggleDarkMode}>{this.state.darkMode ? "Light Mode" : "Dark Mode"}</button>
       </div>
     )
   }
