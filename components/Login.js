@@ -106,8 +106,7 @@ class LoginForm extends React.Component {
 		return (
 			<div id="login-div">
 				<form id="login-form" onSubmit={this.handleSubmit}>
-					<h1>Login</h1>
-					<hr />
+					<h1>IT Training System</h1>
 					<input
 						onChange={this.handleChange}
 						value={this.state.username}
@@ -128,12 +127,14 @@ class LoginForm extends React.Component {
 						id="password">
 					</input>
 
-					<FontAwesomeIcon id="toggle-password" onClick={this.togglePasswordVisibility} icon={this.state.showPassword ? faEyeSlash : faEye} />
+					<span id="toggle-password">
+						<FontAwesomeIcon onClick={this.togglePasswordVisibility} icon={this.state.showPassword ? faEyeSlash : faEye} />
+					</span>
 					<br />
 					<input type="checkbox" id="rememberUsername" name="rememberUsername" checked={this.state.rememberUsername} onChange={this.handleChange}></input>
 					<label id="remember-label" htmlFor="rememberUsername">Remember username</label>
 					<br />
-					{this.state.loading ? <FontAwesomeIcon className="fa-spin" id="loading" icon={faCircleNotch} /> : <input type="submit" value="login"></input>}
+					{this.state.loading ? <FontAwesomeIcon className="fa-spin" id="loading" icon={faCircleNotch} /> : <input type="submit" value="Sign In"></input>}
 					{this.state.badLogin ? <p id="bad-login">Incorrect username or password</p> : null}
 				</form>
 			</div >

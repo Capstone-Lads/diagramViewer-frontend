@@ -7,11 +7,23 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      darkMode: true,
       userIsLoggedIn: false,
       apiKey: null,
     }
 
+    this.toggleDarkMode = this.toggleDarkMode.bind(this);
     this.loginCallback = this.loginCallback.bind(this);
+  }
+
+  toggleDarkMode() {
+    this.setState({darkMode: !this.state.darkMode});
+    const body = document.querySelector('body');
+    if (this.state.darkMode) {
+      body.className = "dark";
+    } else {
+      body.className = "";
+    }
   }
 
   loginCallback(loggedIn, data) {
@@ -24,6 +36,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="app" className={this.state.darkMode ? 'dark' : null}>
+        <button id="dark-mode-toggle" onClick={this.toggleDarkMode}>{this.state.darkMode ? "Light Mode" : "Dark Mode"}</button>
         {this.state.userIsLoggedIn ?
           <h1>LOGIN SUCCESSFUL</h1>
           : <LoginForm callback={this.loginCallback} />

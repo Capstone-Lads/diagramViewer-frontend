@@ -7,6 +7,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+body .dark {
+  background-color: #303030;
+  color: #FFFFFF;
+}
+
 #root {
   position: absolute;
   top: 0;
@@ -23,12 +28,25 @@ body {
   left: 0;
 }
 
+#dark-mode-toggle {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  background-color: #303030;
+}
+
+body .dark #dark-mode-toggle {
+  color: black;
+  background-color: white;
+}
+
 #login-div {
-  background-color: #C0C0C0;
   margin: 10em auto 0 auto;
   width: 40em;
   border-radius: 1em;
-  box-shadow: 0 0 15px 5px #C0C0C0;
 }
 
 #login-form {
@@ -39,23 +57,13 @@ body {
 
 #login-form h1 {
   font-weight: normal;
-  color: black;
   margin: .1em;
   font-size: 72px;
 }
 
-#login-form hr {
-  width: 20%;
-  height: 5px;
-  background-image: linear-gradient(90deg, #0288D1, #29B6F6);
-  border: 0;
-  margin: 1em auto;
-}
-
 #login-form input {
   font-size: 30px;
-  border-radius: .2em;
-  border: 0;
+  margin: .3em 0;
 }
 
 #remember-label {
@@ -64,24 +72,47 @@ body {
 
 #username {
   margin: .2em 0;
+  border-radius: .2em;
+  border: 1px solid grey;
 }
 
 #password {
-  width: 282px;
-  margin: .2em 5px 0 0;
+  width: 283px;
+  margin: 0;
+  border: 1px solid grey;
+  border-right: 0;
+  border-radius: .2em 0 0 .2em;
 }
 
 #toggle-password {
-  width: 34px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  color: black;
+  padding: 3px;
   font-size: 30px;
+  position: relative;
+  top: 1px;
+  border: 1px solid grey;
+  border-left: 0;
+  border-radius: 0 .2em .2em 0;
+}
+
+#toggle-password svg {
+  width: 20px;
 }
 
 #login-form input[type=submit] {
   margin: .5em 0 0 0;
   font-family: 'Roboto', sans-serif;
+  border: 1px solid grey;
+  border-radius: .2em;
+  padding: .3em .5em;
+  background-color: #81c2df;
 }
 
 #bad-login {
   margin: 1px 0;
-  color: red;
+  color: #F23040;
 }
