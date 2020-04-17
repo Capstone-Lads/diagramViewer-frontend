@@ -10,14 +10,15 @@ class UploadDiagram extends React.Component {
 			name: "",
 			description: "",
 			type: "",
-			choices: [],
-			displayNames: [],
+			diagramTypeChoices: [],
+			diagramTypeDisplayNames: [],
 			error: false,
 			loading: true,
 			POSTloading: false,
 			success: false,
 		};
 
+		this.fileInput = React.createRef();
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -31,11 +32,11 @@ class UploadDiagram extends React.Component {
 				return res.json();
 			})
 			.then(data => {
-				const dataChoices = data.actions.POST.diagram_type.choices;
+				const diagramChoices = data.actions.POST.diagram_type.choices;
 				this.setState({
-					choices: dataChoices.map(x => x.value),
-					displayNames: dataChoices.map(x => x.display_name),
-					type: dataChoices[0].value,
+					diagramTypeChoices: diagramChoices.map(x => x.value),
+					diagramTypeDisplayNames: diagramChoices.map(x => x.display_name),
+					type: diagramChoices[0].value,
 					loading: false,
 				});
 			});
@@ -49,18 +50,17 @@ class UploadDiagram extends React.Component {
 			success: false,
 		});
 
-		let postData = {
-			name: this.state.name,
-			description: this.state.description,
-			diagram_type: this.state.type,
+		let postData = new FormData();
+		postData.append("name", this.state.name);
+		postData.append("description", this.state.description);
+		postData.append("diagram_type", this.state.type);
+		for (let i = 0; i < this.fileInput.current.files.length; i++) {
+			postData.append("file", this.fileInput.current.files[i]);
 		}
 
 		fetch(diagramEndpoint, {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(postData)
+			body: postData,
 		})
 			.then(res => {
 				this.setState({ POSTloading: false })
@@ -71,12 +71,14 @@ class UploadDiagram extends React.Component {
 					})
 					return false;
 				} else {
+					console.error(res);
 					this.setState({ error: true })
 					return res.json();
 				}
 			})
 			.then(data => {
 				if (this.state.error) {
+					console.error(data);
 					const keys = Object.keys(data);
 					let errorString = "";
 					keys.forEach(key => {
@@ -94,8 +96,8 @@ class UploadDiagram extends React.Component {
 
 	render() {
 
-		const selectChoices = this.state.choices.map((x, i) =>
-			<option value={x} key={i}>{this.state.displayNames[i]}</option>
+		const selectChoices = this.state.diagramTypeChoices.map((x, i) =>
+			<option value={x} key={i}>{this.state.diagramTypeDisplayNames[i]}</option>
 		);
 		return (
 			<div id="upload-diagram">
@@ -106,6 +108,7 @@ class UploadDiagram extends React.Component {
 							<label htmlFor="name">Name: </label><br />
 							<label htmlFor="description">Description: </label><br />
 							<label htmlFor="type">Type: </label><br />
+							<label htmlFor="file">Files: </label><br />
 						</div>
 						<form onSubmit={this.handleSubmit}>
 							<input
@@ -134,6 +137,7 @@ class UploadDiagram extends React.Component {
 								{selectChoices}
 							</select>
 							<br />
+							<input name="file" type="file" ref={this.fileInput} multiple></input>
 							{this.state.POSTloading ? <FontAwesomeIcon className="fa-spin" id="loading" icon={faCircleNotch} /> :
 								<input type="submit" value="Submit"></input>}
 						</form>
