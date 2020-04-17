@@ -18,6 +18,9 @@ class App extends React.Component {
   }
 
   toggleDarkMode() {
+    this.state.darkMode ? document.querySelector('body').classList.remove("dark") :
+      document.querySelector('body').classList.add("dark");
+
     this.setState({ darkMode: !this.state.darkMode });
   }
 
@@ -30,7 +33,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="app" className={this.state.darkMode ? 'dark' : null}>
+      <div id="app">
         {this.state.userIsLoggedIn ?
           <Wrapper />
           : <LoginForm callback={this.loginCallback} />

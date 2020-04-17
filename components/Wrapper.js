@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import UploadDiagram from './UploadDiagram';
 import DiagramViewer from './DiagramViewer';
 
@@ -6,22 +8,22 @@ class Wrapper extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			showSidebar: true,
 			modules: ["Diagram Viewer", "Upload Diagram"],
 			currentModule: 0,
 		};
 
-		this.handleSidebarClick = this.handleSidebarClick.bind(this);
+		this.toggleSidebar = this.toggleSidebar.bind(this);
 	}
 
-	handleSidebarClick(e) {
-		e.preventDefault();
-		console.log(e);
+	toggleSidebar() {
+		this.setState({ showSidebar: !this.state.showSidebar });
 	}
 
 	render() {
 		const sidebarItems = this.state.modules.map((x, i) =>
 			<li key={i} className={this.state.currentModule === i ? "selected" : ""}>
-				<button onClick={() => this.setState({currentModule: i})} >
+				<button onClick={() => this.setState({ currentModule: i })} >
 					{x}
 				</button>
 			</li>
@@ -35,10 +37,13 @@ class Wrapper extends React.Component {
 
 		return (
 			<div id="wrapper">
-				<div id="sidebar">
+				<div id="sidebar" className={this.state.showSidebar ? "show" : ""}>
 					<ul>
 						{sidebarItems}
 					</ul>
+					<button id="toggle-sidebar" onClick={this.toggleSidebar}>
+						<FontAwesomeIcon icon={faArrowRight} />
+					</button>
 				</div>
 				<div id="content">
 					{content}

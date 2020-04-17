@@ -21,6 +21,7 @@ class UploadDiagram extends React.Component {
 		this.fileInput = React.createRef();
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.inputSize = 50;
 	}
 
 	// get a list of valid types
@@ -54,8 +55,9 @@ class UploadDiagram extends React.Component {
 		postData.append("name", this.state.name);
 		postData.append("description", this.state.description);
 		postData.append("diagram_type", this.state.type);
-		for (let i = 0; i < this.fileInput.current.files.length; i++) {
-			postData.append("file", this.fileInput.current.files[i]);
+		const files = this.fileInput.current.files;
+		for (let i = 0; i < files.length; i++) {
+			postData.append("file", files[i]);
 		}
 
 		fetch(diagramEndpoint, {
@@ -82,7 +84,7 @@ class UploadDiagram extends React.Component {
 					const keys = Object.keys(data);
 					let errorString = "";
 					keys.forEach(key => {
-						errorString += "ERROR: " + key + " " + data[key] + "\n";
+						errorString += "ERROR:\n" + key + ": " + data[key] + "\n";
 					})
 					this.setState({ error: errorString })
 				}
@@ -113,7 +115,7 @@ class UploadDiagram extends React.Component {
 						<form onSubmit={this.handleSubmit}>
 							<input
 								type="text"
-								size="70"
+								size={this.inputSize}
 								value={this.state.name}
 								id="name"
 								name="name"
@@ -122,7 +124,7 @@ class UploadDiagram extends React.Component {
 							<br />
 							<input
 								type="text"
-								size="70"
+								size={this.inputSize}
 								value={this.state.description}
 								id="description"
 								name="description"
