@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0px;
   font-family: 'Roboto', sans-serif;
@@ -32,7 +36,7 @@ body.dark {
 }
 
 #dark-mode-toggle {
-  position: absolute;
+  position: fixed;
   bottom: 2px;
   left: 2px;
   border: 0;
@@ -169,6 +173,7 @@ body.dark {
   background-color: #81c2df;
   color: black;
   text-align: center;
+  z-index: 9999;
  }
 
  #sidebar.show #toggle-sidebar {
@@ -190,6 +195,58 @@ body.dark {
 
 #content {
   flex-grow: 2;
+  margin: 0;
+  max-height: 100vh;
+}
+
+#diagram-list {
+  margin: 0;
+  padding-top: 2em;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#diagram-list button {
+  font-size: 18px;
+}
+
+#diagram-viewer {
+  display: flex;
+  flex-direction: row;
+}
+
+#layer-selector {
+  list-style-type:none;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  max-width: 18%;
+  border-right: 1px solid grey;
+  overflow-x: hidden;
+}
+
+#layer-selector h2 {
+  text-align: center;
+}
+
+#layer-selector button {
+  width: 100%;
+  text-align: right;
+}
+
+#main-diagram-view {
+  position: relative;
+}
+
+#main-diagram-view img {
+  position: absolute;
+  max-height: 90vh;
+  max-width: 90vw;
+}
+
+#main-diagram-view img.hide {
+  display: none;
 }
 
 #upload-diagram {

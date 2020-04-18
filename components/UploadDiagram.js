@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-const diagramEndpoint = "http://141.216.25.181/diagram/"
 
 class UploadDiagram extends React.Component {
 	constructor(props) {
@@ -26,7 +25,7 @@ class UploadDiagram extends React.Component {
 
 	// get a list of valid types
 	componentDidMount() {
-		fetch(diagramEndpoint, {
+		fetch(this.props.endpoint, {
 			method: 'OPTIONS'
 		})
 			.then(res => {
@@ -59,7 +58,7 @@ class UploadDiagram extends React.Component {
 			postData.append("file", files[i]);
 		}
 
-		fetch(diagramEndpoint, {
+		fetch(this.props.endpoint, {
 			method: 'POST',
 			body: postData,
 		})

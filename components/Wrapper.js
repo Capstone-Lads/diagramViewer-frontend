@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import UploadDiagram from './UploadDiagram';
 import DiagramViewer from './DiagramViewer';
+const diagramEndpoint = "http://141.216.25.181/diagram/"
 
 class Wrapper extends React.Component {
 	constructor(props) {
@@ -30,9 +31,9 @@ class Wrapper extends React.Component {
 		);
 
 		if (this.state.currentModule === 0) {
-			content = <DiagramViewer />
+			content = <DiagramViewer endpoint={diagramEndpoint} />
 		} else if (this.state.currentModule === 1) {
-			content = <UploadDiagram />
+			content = <UploadDiagram endpoint={diagramEndpoint} />
 		}
 
 		return (
