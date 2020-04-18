@@ -37,7 +37,6 @@ class UploadDiagram extends React.Component {
 				this.setState({
 					diagramTypeChoices: diagramChoices.map(x => x.value),
 					diagramTypeDisplayNames: diagramChoices.map(x => x.display_name),
-					type: diagramChoices[0].value,
 					loading: false,
 				});
 			});
@@ -119,6 +118,7 @@ class UploadDiagram extends React.Component {
 								value={this.state.name}
 								id="name"
 								name="name"
+								required
 								onChange={this.handleChange}>
 							</input>
 							<br />
@@ -128,6 +128,7 @@ class UploadDiagram extends React.Component {
 								value={this.state.description}
 								id="description"
 								name="description"
+								required
 								onChange={this.handleChange}>
 							</input>
 							<br />
@@ -135,11 +136,13 @@ class UploadDiagram extends React.Component {
 								value={this.state.type}
 								id="type"
 								name="type"
+								required
 								onChange={this.handleChange}>
+								<option disabled value=""> -- select a type -- </option>
 								{selectChoices}
 							</select>
 							<br />
-							<input name="file" type="file" ref={this.fileInput} multiple></input>
+							<input accept="image/*" name="file" type="file" ref={this.fileInput} multiple required></input>
 							{this.state.POSTloading ? <FontAwesomeIcon className="fa-spin" id="loading" icon={faCircleNotch} /> :
 								<input type="submit" value="Submit"></input>}
 						</form>

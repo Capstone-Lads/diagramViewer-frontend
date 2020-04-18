@@ -210,15 +210,26 @@ body.dark {
 }
 
 #upload-diagram-labels label {
-  font-size: 18px;
+  display: inline-block;
+  height: 22px;
 }
 
 #upload-diagram-form form {
   text-align: left;
 }
 
+#upload-diagram-form form *,
+#upload-diagram-labels label{
+  margin: 3px 0 0 0;
+}
+
 #upload-diagram-form select {
   width: 100%;
+}
+
+#upload-diagram-form form input[type=submit] {
+  position: relative;
+  left: 26px;
 }
 
 #upload-diagram-success {
